@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
+import { Field } from 'redux-form';
 
 import './style.scss';
 
-class InputChat extends Component {
-    render() {
-        return (
-            <form className="input-chat">
-                <input type="text" />
-                <button type="submit">Send</button>
-            </form>
-        )
-    }
+const InputChat = (props) => {
+    return (
+        <div className="input-chat">
+            <Field key="message" name="message" component="input" autoComplete="off" maxLength="130" />
+            <button type="submit">Send</button>
+        </div>
+    )
 }
 
 export default InputChat;

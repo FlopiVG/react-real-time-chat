@@ -1,14 +1,12 @@
 import React from 'react';
 
-import AreaChat from 'components/AreaChat';
-import InputChat from 'components/InputChat';
+import Chat from 'containers/Chat';
 
 const App = (props) => {
     return (
         <div>
             <h3>My App</h3>
-            <AreaChat />
-            <InputChat />
+            <Chat />
         </div>
     )
 };
