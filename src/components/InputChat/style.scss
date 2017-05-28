@@ -1,0 +1,10 @@
+.input-chat {
+    margin-top: 5px;
+    display: flex;
+    input {
+        flex-grow: 10;
+    }
+    button {
+        flex-grow: 1;
+    }
+}

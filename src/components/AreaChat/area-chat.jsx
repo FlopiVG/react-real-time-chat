@@ -1,8 +1,10 @@
 import React from 'react';
 
+import './style.scss';
+
 const AreaChat = (props) => {
     return (
-        <div>Area Chat Component</div>
+        <div className="area-chat" />
     )
 };
 
