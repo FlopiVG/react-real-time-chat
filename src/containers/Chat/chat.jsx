@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import { reduxForm, reset } from 'redux-form';
 import { connect } from 'react-redux';
+import io from 'socket.io-client';
+
 
 import AreaChat from 'components/AreaChat';
 import InputChat from 'components/InputChat';
 
 import { sendChat } from 'actions/chat-action';
 
+const socket = io('http://localhost:3000');
+
 class Chat extends Component {
+    componentWillMount() {
+        socket.on('serverMessage', message => this.props.sendChat(message));
+    }
+
     render() {
         return (
             <div className="chat">
@@ -19,8 +27,8 @@ class Chat extends Component {
         )
     }
 
-    onSubmit(values) {
-        this.props.sendChat(values);
+    onSubmit(values) {        
+        socket.emit('message', values);
     }
 }
 
