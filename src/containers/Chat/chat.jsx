@@ -8,8 +8,8 @@ import AreaChat from 'components/AreaChat';
 import InputChat from 'components/InputChat';
 
 import { sendChat } from 'actions/chat-action';
-
-const socket = io('https://flopi-react-chat.herokuapp.com:' + process.env.PORT || 3000);
+const port = process.env.PORT || 3000;
+const socket = io('https://flopi-react-chat.herokuapp.com');
 
 class Chat extends Component {
     componentWillMount() {
