@@ -1,17 +1,19 @@
-const express = require('express');  
-const app = express();
+const feathers = require('feathers');
+const socketio = require('feathers-socketio');
 const path = require('path');
+const app = feathers();
+
 const socketServer = require('./socket-server');
 
 const PORT = process.env.PORT || 3000;
 
-app.use(express.static('dist'));
+app.use(feathers.static('dist'));
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../index.html'));
 });
 
-const webServer = app.listen(PORT, () => {
-    console.log(`Server listen on ${PORT}`);
-});
+app.configure(socketio(socketServer));
 
-socketServer(webServer);
+app.listen(PORT, () => {
+    console.log(`Server listen on ${PORT}`);
+})

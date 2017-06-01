@@ -1,24 +1,19 @@
-const io = require('socket.io');
-
-module.exports = (server) => {
-    const socketServer = io(server);
+module.exports = (io) => {
     const connections = [];
 
-    socketServer.on('connection', socket => {
-        console.log(socket.id, "connected");
+    io.on('connection', (socket) => {
+        console.log("Conected");
         connections.push(socket);
-
         socket.on('message', data => {
-            console.log(data);
             connections.forEach(connectedSocket => {
                 connectedSocket.emit('serverMessage', data);
             });
         });
 
         socket.on('disconnect', () => {
-            console.log(socket.id, "disconnected");
+            console.log('Disconected');
             const index = connections.indexOf(socket);
             connections.splice(index, 1);
-        });
-    })
+        })    
+    });
 }
