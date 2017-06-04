@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "webpack --progress",
     "build:watch": "webpack --progress -w",
+    "prestart": "webpack --progress",
     "start": "node ./server/index.js",
     "start:dev": "webpack-dev-server --progress",
     "server": "nodemon server/index.js"

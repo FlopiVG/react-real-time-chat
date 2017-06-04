@@ -3,9 +3,8 @@ import { reduxForm, reset } from 'redux-form';
 import { connect } from 'react-redux';
 import io from 'socket.io-client';
 
-
-import AreaChat from 'components/AreaChat';
-import InputForm from 'components/molecules/input-form';
+import ChatText from 'components/molecules/ChatText';
+import InputForm from 'components/molecules/InputForm';
 
 import { sendChat } from 'actions/chat-action';
 
@@ -19,7 +18,7 @@ class Chat extends Component {
     render() {
         return (
             <div className="chat">
-                <AreaChat messages={ this.props.chat } />
+                <ChatText messages={ this.props.chat } />
                 <form onSubmit={ this.props.handleSubmit(this.onSubmit.bind(this)) }>
                     <InputForm />
                 </form>
@@ -27,8 +26,8 @@ class Chat extends Component {
         )
     }
 
-    onSubmit(values) {        
-        socket.emit('message', values);
+    onSubmit(values) {
+        socket.emit('message', { ...values, name: "GenericName"});
     }
 }
 

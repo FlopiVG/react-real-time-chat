@@ -1,6 +1,11 @@
+import React from 'react';
 import styled from 'styled-components';
 
-const Input = styled.input`
+const Input = ({ input }) => {
+    return <StyledInput { ...input } autoComplete = "off" maxLength="128"/>
+}
+
+const StyledInput = styled.input`
     font-size: 18px;
     margin: 5px;
     padding: 5px;
