@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 
 
 import AreaChat from 'components/AreaChat';
-import InputChat from 'components/InputChat';
+import InputForm from 'components/molecules/input-form';
 
 import { sendChat } from 'actions/chat-action';
 
@@ -21,7 +21,7 @@ class Chat extends Component {
             <div className="chat">
                 <AreaChat messages={ this.props.chat } />
                 <form onSubmit={ this.props.handleSubmit(this.onSubmit.bind(this)) }>
-                    <InputChat />
+                    <InputForm />
                 </form>
             </div>
         )
