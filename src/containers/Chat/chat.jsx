@@ -5,6 +5,7 @@ import io from 'socket.io-client';
 
 import ChatText from 'components/molecules/ChatText';
 import InputForm from 'components/molecules/InputForm';
+import Modal from 'components/organisms/Modal';
 
 import { sendChat } from 'actions/chat-action';
 
@@ -18,6 +19,7 @@ class Chat extends Component {
     render() {
         return (
             <div className="chat">
+                <Modal />
                 <ChatText messages={ this.props.chat } />
                 <form onSubmit={ this.props.handleSubmit(this.onSubmit.bind(this)) }>
                     <InputForm />
