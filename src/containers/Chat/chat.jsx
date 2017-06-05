@@ -9,7 +9,7 @@ import Modal from 'components/organisms/Modal';
 
 import { sendChat } from 'actions/chat-action';
 
-const socket = io('http://localhost:3000/');
+const socket = io('https://flopi-react-chat.herokuapp.com/');
 
 class Chat extends Component {
     componentWillMount() {
