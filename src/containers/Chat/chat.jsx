@@ -19,7 +19,7 @@ class Chat extends Component {
     render() {
         return (
             <div className="chat">
-                <Modal />
+                { /*<Modal /> */}
                 <ChatText messages={ this.props.chat } />
                 <form onSubmit={ this.props.handleSubmit(this.onSubmit.bind(this)) }>
                     <InputForm />
