@@ -8,20 +8,24 @@ import Label from 'components/atoms/Label';
 
 const Wrapper = styled.div`
     display: flex;
-    input {
-        flex-grow: 1;
-    }
+    flex-grow: 1;
+    flex-direction: column;
+`;
+
+const ContainerWrapper = styled.div`
+    display: flex;
+    ${props => props.display && `flex-direction: ${props.display}`};
 `;
 
 const InputForm = (props) => {
     return (
-        <div>
-            { props.label && <Label>{ props.label }</Label>}
+        <ContainerWrapper display={ props.display }> 
             <Wrapper>
+                { props.label && <Label>{ props.label }</Label>}
                 <Field key="message" name="message" component={ Input } autoComplete="off" maxLength="130" />
-                <Button type="submit">Send</Button>
             </Wrapper>
-        </div>
+            <Button type="submit">Send</Button>
+        </ContainerWrapper>
     )
 }
 
