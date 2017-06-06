@@ -22,7 +22,7 @@ const InputForm = (props) => {
         <ContainerWrapper display={ props.display }> 
             <Wrapper>
                 { props.label && <Label>{ props.label }</Label>}
-                <Field key="message" name="message" component={ Input } autoComplete="off" maxLength="130" />
+                <Field key={ props.name } name={ props.name } component={ Input } autoComplete="off" maxLength="130" />
             </Wrapper>
             <Button type="submit">Send</Button>
         </ContainerWrapper>

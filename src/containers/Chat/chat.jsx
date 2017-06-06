@@ -5,11 +5,12 @@ import io from 'socket.io-client';
 
 import ChatText from 'components/molecules/ChatText';
 import InputForm from 'components/molecules/InputForm';
-import Modal from 'components/organisms/Modal';
+import Modal from 'containers/EnterNameModal';
 
 import { sendChat } from 'actions/chat-action';
 
 const socket = io('https://flopi-react-chat.herokuapp.com/');
+
 
 class Chat extends Component {
     componentWillMount() {
@@ -19,17 +20,19 @@ class Chat extends Component {
     render() {
         return (
             <div className="chat">
-                <Modal />
-                <ChatText messages={ this.props.chat } />
+                { !this.props.chat.name && <Modal /> }
+                <ChatText messages={ this.props.chat.messages } />
                 <form onSubmit={ this.props.handleSubmit(this.onSubmit.bind(this)) }>
-                    <InputForm display="row"/>
+                    <InputForm display="row" name="message"/>
                 </form>
             </div>
         )
     }
 
     onSubmit(values) {
-        socket.emit('message', { ...values, name: "GenericName"});
+        if (this.props.chat.name) {
+            socket.emit('message', { ...values, name: this.props.chat.name});
+        }
     }
 }
 
