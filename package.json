@@ -9,7 +9,8 @@
     "start": "node ./server/index.js",
     "start:dev": "webpack-dev-server --progress",
     "server": "nodemon server/index.js",
-    "test": "karma start ./test/karma.conf.js"
+    "test": "karma start ./test/karma.conf.js",
+    "test:watch": "karma start ./test/karma.conf.js --single-run=false"
   },
   "keywords": [],
   "author": "",

@@ -25,14 +25,15 @@ const StyledDivText = styled.div`
 
 class DivText extends Component {
     componentDidUpdate(prevProps, prevState){
-        const { divText } = this.refs;
-
-        divText.scrollTop = divText.scrollHeight;
+        if (this.props.children.length !== prevProps.children.length) {
+            this.divText.scrollTop = this.divText.scrollHeight;
+        }
+        
     }
 
     render() {
         return (
-            <StyledDivText ref="divText">{ this.props.children } </StyledDivText>
+            <StyledDivText innerRef={ (comp) => { this.divText = comp } }>{ this.props.children } </StyledDivText>
         )
     }
 }
