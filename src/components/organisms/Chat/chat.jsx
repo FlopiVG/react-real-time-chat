@@ -1,26 +1,33 @@
 import React, { Component } from 'react';
 import { reduxForm, reset } from 'redux-form';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import io from 'socket.io-client';
 
 import ChatText from 'components/molecules/ChatText';
 import InputForm from 'components/molecules/InputForm';
-import Modal from 'containers/EnterNameModal';
+import EnterNameModal from 'components/organisms/EnterNameModal';
 
 import { sendChat } from 'actions/chat-action';
 
-const socket = io('https://flopi-react-chat.herokuapp.com/');
+
+//const socket = io('https://flopi-react-chat.herokuapp.com/');
 
 
 class Chat extends Component {
+    static PropTypes = {
+        host: PropTypes.array.isRequired
+    }
+
     componentWillMount() {
-        socket.on('serverMessage', message => this.props.sendChat(message));
+        this.socket = io(this.props.host);
+        this.socket.on('serverMessage', message => this.props.sendChat(message));
     }
 
     render() {
         return (
             <div className="chat">
-                { !this.props.chat.name && <Modal /> }
+                { !this.props.chat.name && <EnterNameModal /> }
                 <ChatText messages={ this.props.chat.messages } />
                 <form onSubmit={ this.props.handleSubmit(this.onSubmit.bind(this)) }>
                     <InputForm display="row" name="message"/>
@@ -31,7 +38,7 @@ class Chat extends Component {
 
     onSubmit(values) {
         if (this.props.chat.name) {
-            socket.emit('message', { ...values, name: this.props.chat.name});
+            this.socket.emit('message', { ...values, name: this.props.chat.name});
         }
     }
 }

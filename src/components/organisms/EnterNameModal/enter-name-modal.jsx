@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { reduxForm, reset } from 'redux-form';
 import { connect } from 'react-redux';
 
-import Modal from 'components/organisms/Modal';
+import Modal from 'components/molecules/Modal';
+import InputForm from 'components/molecules/InputForm';
 import { setName } from 'actions/chat-action';
 
 class EnterNameModal extends Component {
@@ -13,7 +14,9 @@ class EnterNameModal extends Component {
     render() {
         return (
             <form onSubmit={ this.props.handleSubmit(this.onSubmit.bind(this)) }>
-                <Modal />
+                <Modal>
+                    <InputForm label="Enter a name" display="column" name="name"/>
+                </Modal>
             </form>
         )
     }

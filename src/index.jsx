@@ -4,13 +4,13 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
 import reducers from 'reducers';
-import App from 'components/App';
+import IndexPage from 'components/pages/Index';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
 ReactDOM.render(
     <Provider store={ createStoreWithMiddleware(reducers) }>
-        <App />
+        <IndexPage />
     </Provider>
     , document.querySelector('.app')
 );

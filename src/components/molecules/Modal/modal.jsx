@@ -9,6 +9,8 @@ const Wrapper = styled.div`
     position: fixed;
     padding: 5px;
     border-radius: 5px;
+    min-width: 400px;
+    min-height: 100px;
     z-index: 2;
     top: 50%;
     left: 50%;
@@ -20,7 +22,7 @@ const Modal = (props) => {
         <div>
             <BlockDiv />
             <Wrapper>
-                <InputForm label="Enter a name" display="column" name="name"/>
+                { props.children }
             </Wrapper>
         </div>
     )
